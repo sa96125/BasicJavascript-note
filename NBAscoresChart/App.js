@@ -85,6 +85,7 @@ const warriorsGames = [{
 }
 ]
 
+
 //컨테이너 생성
 const ulParent = document.createElement('ul');
 
@@ -128,3 +129,53 @@ for (let game of warriorsGames) {
 
 //바디의 최상단에 삽입!
 document.body.prepend(ulParent);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                            R E F A C T O R I N G                                                  //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const createList = (({ homeTeam, awayTeam }) => {
+    const {
+        team: hTeam,
+        points: hPoints
+    } = homeTeam;
+    const {
+        team: aTeam,
+        points: aPoints
+    } = awayTeam;
+
+    const gameLi = document.createElement('li');
+    const teamNames = `${aTeam} @ ${hTeam}`;
+    let scoreLine;
+    if (aPoints > hPoints) {
+        scoreLine = `<b>${aPoints}</b>-${hPoints}`;
+    } else {
+        scoreLine = `${aPoints}-<b>${hPoints}</b>`;
+    }
+    gameLi.innerHTML = `${teamNames} ${scoreLine}`
+
+    return gameLi;
+});
+
+const getHomeGameColor = (({ homeTeam, awayTeam }, homeTeamName) => {
+    const warriors = homeTeamName === 'Golden State' ? homeTeam : awayTeam;
+    return warriors.isWinner;
+});
+
+
+const makeChart = (data, team) => {
+    const ulParent = document.createElement('ul');
+
+    for (let game of data) {
+        const gameLi = createList(game);
+        gameLi.classList.add(getHomeGameColor(game, team) ? 'win' : 'loss');
+        ulParent.appendChild(gameLi);
+    }
+    return ulParent;
+};
+
+const chart = makeChart(warriorsGames, 'Golden State');
+document.body.prepend(chart)
+// const chart2 = makeChart(warriorsGames, 'Houston');
+// document.body.prepend(chart2)
