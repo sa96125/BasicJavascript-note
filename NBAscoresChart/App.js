@@ -134,7 +134,7 @@ document.body.prepend(ulParent);
 //                                            R E F A C T O R I N G                                                  //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//리스트를 생성, 셋팅하는 함수
 const createList = (({ homeTeam, awayTeam }) => {
     const {
         team: hTeam,
@@ -158,12 +158,13 @@ const createList = (({ homeTeam, awayTeam }) => {
     return gameLi;
 });
 
+// 홈팀의 이름을 매칭하고 홈팀이 이기면 초록 지면 빨강색으로 변경하는 클래스를 연결한다. 맞으면 참을 반환
 const getHomeGameColor = (({ homeTeam, awayTeam }, homeTeamName) => {
     const warriors = homeTeamName === 'Golden State' ? homeTeam : awayTeam;
     return warriors.isWinner;
 });
 
-
+// 전체 과정이 들어간 차트를 만드는 함수
 const makeChart = (data, team) => {
     const ulParent = document.createElement('ul');
 
@@ -175,6 +176,7 @@ const makeChart = (data, team) => {
     return ulParent;
 };
 
+// 메인
 const chart = makeChart(warriorsGames, 'Golden State');
 document.body.prepend(chart)
 // const chart2 = makeChart(warriorsGames, 'Houston');
