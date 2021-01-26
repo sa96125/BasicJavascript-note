@@ -41,16 +41,16 @@ function validAnagram(str1, str2) {
     //객체에 데이터 삽입
     for (let i = 0; i < str1.length; i++) {
         checkChar1[str1[i]] = ++checkChar1[str1[i]] || 1;
-        checkChar1[str2[i]] = ++checkChar2[str2[i]] || 1;
+        checkChar2[str2[i]] = ++checkChar2[str2[i]] || 1;
     }
 
     //각 배열의 Key의 존재, value의 갯수를 비교한다.
     for (let key in checkChar1) {
         if (!(key in checkChar2)) {
-            false;
+            return false;
         }
         if (checkChar1[key] !== checkChar2[key]) {
-            false;
+            return false;
         }
     }
     return true;
