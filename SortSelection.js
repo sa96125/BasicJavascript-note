@@ -19,3 +19,20 @@ function sortSelection(arr) {
 // 마찬 가지로 쓸때 없는 연산을 줄어 조금이라도 time complexity를 줄여보자.
 // 참고로 선택정렬이 버블정렬보다 조금 좋은 편이다. 왜냐하면 스왑이 매순간 일어나지는 않기 때문에:-)
 
+function sortSelection(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let least = 0;
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[least]) {
+                least = j;
+            }
+        }
+        // 제일 앞의 값이 최소값이라는 초기값과 선택정렬의 특성을 이용하여
+        // 최소값이 만약 맨 앞의 값이라면 스왑을 하지 않는다!
+        if (least !== i) {
+            let temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
