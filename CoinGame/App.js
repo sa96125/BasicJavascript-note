@@ -1,3 +1,4 @@
+// 코인이미지 오류!
 const avatar = document.querySelector('#player');
 
 // 키보드 이벤트로 케릭터 무빙
