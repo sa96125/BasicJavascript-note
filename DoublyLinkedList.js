@@ -32,4 +32,20 @@ class DoublyLinkedList {
         return this;
     }
 
+    pop() {
+        if (!this.length) return undefined;
+
+        const popednode = this.tail;
+        this.tail = popednode.pre;
+        this.tail.next = null;
+        popednode.pre = null;
+        popednode.next = null;
+
+        this.length--;
+
+        return this;
+    }
+
+
+
 }
