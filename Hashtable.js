@@ -41,3 +41,19 @@ function _hash(key, arrlength) {
 // - separate chaining 방법 : 같은 인덱스에 추가하여 또다른 배열로 저장하는 방식.
 // - Linear Probing 방법 : 인덱스에 값이 존재한다면 그 다음 인덱스에 값을 저장하는 방식
 
+function set(key, value) {
+    let index = this._hash(key);
+    if (!this.keyMap) {
+        this.keyMap = [];
+    }
+    this.keyMap[index].push([key, value]);
+}
+
+function get(key) {
+    let index = this._hash(key);
+    for (let i = 0; i < keyMap[index].length; i++) {
+        if (this.keyMap[index][i][0] === key) {
+            return this.keyMap[index][i][1];
+        }
+    }
+}
