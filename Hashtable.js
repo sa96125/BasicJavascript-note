@@ -14,3 +14,21 @@ function _hash(key) {
     return total;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                            R E F A C T O R I N G                                                  //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 2. 첫 번째방법에서 효율을 높인 방법.
+// - 속도를 조금이라도 증진시킨다.
+// - 랜덤의 범위를 넓힌다.
+
+function _hash(key, arrlength) {
+    let total = 0, WEIRD_PRIME = 31;
+
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+        let value = char.charCodeAt(0) - 96;
+        total += (value + WEIRD_PRIME);
+        total %= arrlength;
+    }
+    return total;
+}
