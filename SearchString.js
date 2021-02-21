@@ -1,3 +1,5 @@
+// 음... 진짜 단순한 비교방법. (naive)
+
 function searchString(str1, str2) {
     let cnt = 0;
 
